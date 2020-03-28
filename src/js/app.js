@@ -10,7 +10,7 @@ var app = new Vue({
         card_expiry: "",
         cvv_number: "",
         card_expiry_value: "MM/YY",
-        debit_card_bg: "2.jpg",  // Check assets/image to know image names available
+        debit_card_bg: "card-bg.jpg",  // Check assets/image to know image names available
         text_color: "white",
 
         last_deleted_card_digit: "#",
