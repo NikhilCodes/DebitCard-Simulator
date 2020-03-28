@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Courier+Prime|Inconsolata&display=swap');
+
+$debit-card-height: 210pt;
+
+body {
+    background-image: url("../../assets/images/app-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    top: 50px;
+}
+
+#form-fill {
+    position: relative;
+    top: 60%;
+    transform: translateY(-50%);
+    height: 400pt;
+    width: 450pt;
+    margin: auto;
+    border-radius: 13pt;
+    background-color: rgb(63, 63, 63);
+    box-shadow:0 0pt 13pt 0 rgba(0, 0, 0, 0.719);
+    text-align: center;
+}
+
+#debit-card {
+    position: absolute;
+    margin: auto;
+    left: calc((100% - 1.586 * #{$debit-card-height}) / 2);
+    transform: translateY(-50%);
+    height: $debit-card-height;
+    width: calc(1.586 * #{$debit-card-height});
+    border-radius: 3.2mm;
+    background-position: center;
+    background-size: cover;
+    box-shadow:0 0pt 39pt 0 rgba(0, 0, 0, 0.575);
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+    backface-visibility: hidden;
+}
+
+.debit-card-flip {
+    perspective: 1000px;
+    transform: translateY(-50%) rotateY(180deg) !important;
+}
+
+#debit-card-chip {
+    position: absolute;
+    top: 17.7777%;
+    left: 10%;
+    background-image: url("../../assets/images/card-chip.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: calc(0.18 * #{$debit-card-height});
+    width: calc(1.586 * 0.18 * #{$debit-card-height});
+}
+
+.card-logo {
+    left: 75%;
+    top: 5%;
+    position: absolute;
+    height: 50pt;
+    filter: invert(1);
+    transition-duration: 0.5s;
+    opacity: 0;
+}
+
+#card-number {
+    width: fit-content;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    left: 50%;
+    font-family: 'Inconsolata', monospace;
+    font-size: 24pt;
+    font-weight: 300;
+    letter-spacing: 3pt;
+    text-shadow: 1px 2px 3px #000000bb;
+    display: block;
+    padding: 2pt;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 7px;
+    transition-duration: 0.5s;
+}
+
+.card-number-digit {
+    transform: translateY(-50%);
+    position: relative;
+    transition-duration: 0.5s;
+    display: inline-block;
+}
+
+#card-user-name {
+    width: 180pt;
+    height: 18pt;
+    text-align: left;
+    position: absolute;
+    transform: translateY(-50%);
+    left: 8%;
+    top: 86%;
+    font-family: 'Inconsolata', monospace;
+    font-size: 18pt;
+    font-weight: 600;
+    letter-spacing: 3pt;
+    text-shadow: 1px 2px 3px #000000bb;
+    display: block;
+    padding: 2pt 2pt 4pt 7pt;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 7px;
+    transition-duration: 0.5s;
+}
+
+.card-user-name-letters {
+    vertical-align: middle;
+    transition-duration: 0.3s;
+    text-rendering: optimizeLegibility;
+    display: inline-block;
+}
+
+#expiry-date {
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 7px;
+    transition-duration: 0.5s;
+    padding: 4pt;
+    left: 75%;
+    top: 76%;
+    position: absolute;
+}
+
+#expiry-date-title {
+    color: rgb(212, 212, 212);
+    font-family: 'Inconsolata', monospace;
+    font-size: 12pt;
+}
+
+#expiry-date-value {
+    color: white;
+    font-family: "Consolas", monospace;
+    font-size: 16pt;
+    transition-duration: 0.3s;
+}
+
+#magnetic-stripe {
+    position: absolute;
+    top: 16%;
+    width: 100%;
+    height: 20%;
+    background-color: black;
+}
+
+#cvv-number {
+    top: 50%;
+    left: 70%;
+    width: 42pt;
+    height: 16pt;
+    text-align: left;
+    border-radius: 3pt;
+    background-color: white;
+    padding: 4pt;
+    position: absolute;
+    color: black;
+    font-family: "Consolas", monospace;
+    font-size: 16pt;
+    transition-duration: 0.3s;
+}
+
+.slide-fade-up-enter {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    transform: translateY(15px);
+}
+
+.slide-fade-up-leave {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+}
+
+.appear {
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+}
+
+.disappear {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.text-input-style {
+    margin: 0 0 10pt 10pt;
+    top: 40%;
+    position: relative;
+    height: 28pt;
+    width: 300pt;
+    font-size: 18pt;
+    font-family: 'Courier Prime', monospace;
+    border-radius: 6pt;
+    outline: none;
+    border-width: 2pt;
+    border-color: rgb(122, 184, 255);
+    padding: 2pt 6pt 0 6pt;
+}
+
+.text-input-style:focus {
+    border-color: rgb(0, 110, 255);
+}
+
+.selection {
+    border-color: white !important;
+}
+
+.active-image {
+    opacity: 1 !important;
+}

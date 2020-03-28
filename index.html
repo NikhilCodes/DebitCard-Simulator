@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="src/css/style.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div id="form-fill">
+            <!--Start-Of-Debit-Card-Front-->
+            <div id="debit-card" :class="{'debit-card-flip': flip}" :style="{
+                    backgroundImage: debit_card_bg_path
+                }">
+            
+                <div id="debit-card-chip"></div>
+
+                <img :class="['card-logo' ,{'active-image': (get_card_type=='visa')}]" src="assets/images/visa.svg">
+                <img :class="['card-logo' ,{'active-image': (get_card_type=='mastercard')}]" src="assets/images/mastercard.svg">
+                
+                <div id="card-number" :class="{'selection': (focus_card_number)}">
+                    <div class="card-number-digit" :style="{
+                            color: text_color
+                        }" v-for="n in card_number">
+                        <div v-if="n != ' '"
+                            :class="['card-number-digit', {'slide-fade-up-leave' : (n == '#'), 'slide-fade-up-enter' : (n != '#')}]">
+                            <div v-if="n != '#'">
+                                {{ n }}
+                            </div>
+                            <div v-else>
+                                {{ last_deleted_card_digit }}
+                            </div>
+                        </div>
+                        <div v-if="n != ' '"
+                        :class="['card-number-digit', {'slide-fade-up-enter' : (n == '#'), 'slide-fade-up-leave' : (n != '#')}]">
+                            {{ card_number_mask[0] }}
+                        </div>
+                        <div style="width: 10px;" class="card-number-digit" v-else>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="card-user-name" :style="{ color: text_color }" :class="{'selection': (focus_card_user_name)}">
+                    <div v-for="letter in card_user_name_arr" class="card-user-name-letters">
+                        
+                        <div class="card-user-name-letters" v-if="letter != ' '" :class="{'appear': (letter != '-'), 'disappear': (letter == '-')}">
+                            <div v-if="letter != '-'">{{ letter }}</div>
+                            <div v-else >{{ last_deleted_user_name_letter }}</div>
+                        </div>
+                        <div style="width: 10px;" class="card-user-name-letters" v-else></div>
+                    </div>
+                </div>
+
+                <div id="expiry-date" :class="{'selection': (focus_card_expiry)}">
+                    <div id="expiry-date-title">VALID THRU</div>
+                    <div id="expiry-date-value" :class="{'disappear': card_expiry==''}">
+                        <div v-if="card_expiry!=''">{{ card_expiry_value }}</div>
+                        <div v-else>/</div>
+                    </div>
+                </div>
+            
+
+            </div>
+            <!--End-Of-Debit-Card-->
+
+            <!--Start-Of-Debit-Card-Back-->
+            <div id="debit-card" :class="{'debit-card-flip': !flip}" :style="{
+                backgroundImage: debit_card_bg_path
+            }">
+                <div id="magnetic-stripe"></div>  
+                <div id="cvv-number">
+                    {{ cvv_number }}
+                </div>          
+            </div>
+            <!--End-Of-Debit-Card-Back-->
+
+            <input type="text" class="text-input-style" v-model="card_number_input" @input="onCardNumberInputChange()"
+                maxlength="19" @focus="focus_in_card_number()" @focusout="focus_out_card_number()">
+
+            <input type="text" class="text-input-style" v-model="card_user_name" @input="onCardUserNameInputChange()"
+                :maxlength="name_maxlen" @focus="focus_in_card_name()" @focusout="focus_out_card_name()" spellcheck="false">
+
+            <input type="month" class="text-input-style" v-model="card_expiry" @focus="focus_in_card_expiry()" @focusout="focus_out_card_expiry()">
+            <input type="text" class="text-input-style" maxlength=4 v-model="cvv_number" @focus="face_back()" @focusout="face_front()" @input="only_cvv_number()">
+
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="src/js/app.js"></script>
+
+</html>
