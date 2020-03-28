@@ -8,9 +8,7 @@
     <div id="app">
         <div id="form-fill">
             <!--Start-Of-Debit-Card-Front-->
-            <div id="debit-card" :class="{'debit-card-flip': flip}" :style="{
-                    backgroundImage: debit_card_bg_path
-                }">
+            <div id="debit-card" :class="{'debit-card-flip': flip}" >
             
                 <div id="debit-card-chip"></div>
 
@@ -64,9 +62,7 @@
             <!--End-Of-Debit-Card-->
 
             <!--Start-Of-Debit-Card-Back-->
-            <div id="debit-card" :class="{'debit-card-flip': !flip}" :style="{
-                backgroundImage: debit_card_bg_path
-            }">
+            <div id="debit-card" :class="{'debit-card-flip': !flip}">
                 <div id="magnetic-stripe"></div>  
                 <div id="cvv-number">
                     {{ cvv_number }}
